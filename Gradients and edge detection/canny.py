@@ -1,0 +1,12 @@
+import cv2
+img=cv2.imread("/home/saujanya/OCR/practice/test_images/coins.jpg")
+cv2.imshow("Original",img)
+gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+blur=cv2.GaussianBlur(img,(5,5),0)
+cv2.imshow("Blurred",blur)
+canny1=cv2.Canny(blur,0,150)
+cv2.imshow("Canny1",canny1)
+canny2=cv2.Canny(blur,30,150)
+cv2.imshow("Canny2",canny2)
+cv2.waitKey(0)
+cv2.destroyAllWindows()

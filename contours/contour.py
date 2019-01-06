@@ -1,0 +1,17 @@
+import cv2
+import numpy as np
+img=cv2.imread("/home/saujanya/OCR/practice/test_images/coin.png")
+cv2.imshow("Original",img)
+gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+blur=cv2.GaussianBlur(gray,(13,13),0)
+edge=cv2.Canny(blur,30,150)
+cv2.imshow("Edged image",edge)
+(a,cnts,b)=cv2.findContours(edge.copy(),cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+print(cnts)
+print(len(cnts))
+coin=img.copy()
+cv2.drawContours(coin,cnts,-1,(0,255,0),2)
+cv2.imshow("Coins",coin)
+cv2.imshow("Destroyed",b)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
